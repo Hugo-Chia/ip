@@ -22,21 +22,21 @@ public class Artemis {
                     Task task = list.get(i);
                     System.out.println(i+1 + "." + task.toString());
                 }
-            } else if (userInput.substring(0, 4).equals("mark")) {
+            } else if (userInput.startsWith("mark")) {
                 int index = Integer.parseInt(userInput.substring(5)) - 1;
                 if (index < list.size()) {
                     Task task = list.get(index);
                     task.markAsDone();
                     System.out.println("Nice! I've marked this task as done:\n" + task.toString());
                 }
-            } else if (userInput.substring(0, 6).equals("unmark")) {
+            } else if (userInput.startsWith("unmark")) {
                 int index = Integer.parseInt(userInput.substring(7)) - 1;
                 if (index < list.size()) {
                     Task task = list.get(index);
                     task.markAsNotDone();
                     System.out.println("OK, I've marked this task as not done yet:\n" + task.toString());
                 }
-            } else if (userInput.substring(0, 4).equals("todo")) {
+            } else if (userInput.startsWith("todo")) {
                 String description = userInput.substring(5);
 
                 Todo todo = new Todo(description);
@@ -44,7 +44,7 @@ public class Artemis {
 
                 System.out.println("Got it. I've added this task: \n" + todo.toString());
                 System.out.println("Now you have " + Task.getTaskCount() + " tasks in the list.");
-            } else if (userInput.substring(0, 8).equals("deadline")) {
+            } else if (userInput.startsWith("deadline")) {
                 String description = userInput.substring(9, userInput.indexOf("/by") - 1);
                 String by = userInput.substring(userInput.indexOf("/by") + 4);
 
@@ -53,7 +53,7 @@ public class Artemis {
 
                 System.out.println("Got it. I've added this task: \n" + deadline.toString());
                 System.out.println("Now you have " + Task.getTaskCount() + " tasks in the list.");
-            } else if (userInput.substring(0, 5).equals("event")) {
+            } else if (userInput.startsWith("event")) {
                 String description = userInput.substring(6, userInput.indexOf("/from") - 1);
                 String from = userInput.substring(userInput.indexOf("/from") + 6, userInput.indexOf("/to") - 1);
                 String to = userInput.substring(userInput.indexOf("/to") + 4);
