@@ -63,11 +63,9 @@ public class Artemis {
 
                 System.out.println("Got it. I've added this task: \n" + event.toString());
                 System.out.println("Now you have " + Task.getTaskCount() + " tasks in the list.");
+            } else {
+                System.out.println("Sorry, I don't understand what you mean. Please try again!!! :( \n");
             }
-//            else {
-//                list.add(new Task(userInput));
-//                System.out.println("added: " + userInput);
-//            }
         }
 
         System.out.println("Bye. Hope to see you again soon!\n");
