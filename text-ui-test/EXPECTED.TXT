@@ -30,5 +30,28 @@ Here are the tasks in your list:
 5.[T][ ] borrow book
 Sorry, I don't understand what you mean. Please try again!!! :(
 
+Noted. I've removed this task:
+[T][ ] borrow book
+Now you have 4 tasks in the list.
+Here are the tasks in your list:
+
+1.[T][X] read book
+2.[D][ ] return book (by: Sunday)
+3.[E][ ] project meeting (from: Mon 2pm to: 4pm)
+4.[T][ ] borrow book
+You did not choose a task to mark. Please try again!!! :(
+
+Invalid index. Please try again!!! :(
+
+Invalid index. Please try again!!! :(
+
+You did not choose a task to unmark. Please try again!!! :(
+
+You did not fill up anything for todo. Please try again!!! :(
+
+You did not fill up anything for deadline. Please try again!!! :(
+
+You did not fill up anything for event. Please try again!!! :(
+
 Bye. Hope to see you again soon!
 

@@ -7,4 +7,13 @@ mark 1
 mark 4
 list
 blah
+delete 4
+list
+mark
+mark -10
+mark 10
+unmark
+todo
+deadline
+event
 bye
