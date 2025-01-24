@@ -42,7 +42,7 @@ public class Artemis {
                 Todo todo = new Todo(description);
                 list.add(todo);
 
-                System.out.println("Got it. I've added this task: \n" + todo.toString());
+                System.out.println("Got it. I've added this task:\n" + todo.toString());
                 System.out.println("Now you have " + Task.getTaskCount() + " tasks in the list.");
             } else if (userInput.startsWith("deadline")) {
                 String description = userInput.substring(9, userInput.indexOf("/by") - 1);
@@ -51,7 +51,7 @@ public class Artemis {
                 Deadline deadline = new Deadline(description, by);
                 list.add(deadline);
 
-                System.out.println("Got it. I've added this task: \n" + deadline.toString());
+                System.out.println("Got it. I've added this task:\n" + deadline.toString());
                 System.out.println("Now you have " + Task.getTaskCount() + " tasks in the list.");
             } else if (userInput.startsWith("event")) {
                 String description = userInput.substring(6, userInput.indexOf("/from") - 1);
@@ -61,10 +61,10 @@ public class Artemis {
                 Event event = new Event(description, from, to);
                 list.add(event);
 
-                System.out.println("Got it. I've added this task: \n" + event.toString());
+                System.out.println("Got it. I've added this task:\n" + event.toString());
                 System.out.println("Now you have " + Task.getTaskCount() + " tasks in the list.");
             } else {
-                System.out.println("Sorry, I don't understand what you mean. Please try again!!! :( \n");
+                System.out.println("Sorry, I don't understand what you mean. Please try again!!! :(\n");
             }
         }
 
