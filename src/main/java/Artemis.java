@@ -68,6 +68,14 @@ public class Artemis {
 
                     System.out.println("Got it. I've added this task:\n" + event.toString());
                     System.out.println("Now you have " + Task.getTaskCount() + " tasks in the list.");
+                } else if (userInput.startsWith("delete")) {
+                    int index = Integer.parseInt(userInput.substring(7)) - 1;
+                    if (index < list.size()) {
+                        list.remove(index);
+                        Task.reduceTaskCount();
+                        System.out.println("Noted. I've removed this task:\n" + list.get(index).toString());
+                        System.out.println("Now you have " + Task.getTaskCount() + " tasks in the list.");
+                    }
                 } else {
                     throw new ArtemisException("Sorry, I don't understand what you mean. Please try again!!! :(\n");
                 }

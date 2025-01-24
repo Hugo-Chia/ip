@@ -29,6 +29,10 @@ public class Task {
         return taskCount;
     }
 
+    public static void reduceTaskCount() {
+        taskCount--;
+    }
+
     @Override
     public String toString() {
         return "[" + this.getStatusIcon() + "] " + this.description;
