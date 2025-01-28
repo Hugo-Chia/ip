@@ -1,3 +1,5 @@
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -8,7 +10,60 @@ public class Artemis {
         System.out.println("What can I do for you?\n");
 
         Scanner scanner = new Scanner(System.in);
-        ArrayList<Task> list = new ArrayList<Task>();
+        ArrayList<Task> taskList = new ArrayList<Task>();
+
+        //Check if file exists
+        boolean dataExists = new File("data/artemis.txt").isFile();
+
+        if (!dataExists) {
+            //Data file does not exist, create folder and file
+
+            //Directory implementation reference from https://www.geeksforgeeks.org/how-to-create-a-directory-in-java/
+
+            // Specify the Directory Name
+            String directoryName = "data";
+
+            // Address of Current Directory
+            String currentDirectory = System.getProperty("user.dir");
+
+            // Specify the path of the directory to be created
+            String directoryPath = currentDirectory + File.separator + directoryName;
+
+            // Create a File object representing the directory
+            File directory = new File(directoryPath);
+
+            // Attempt to create the directory
+            boolean directoryCreated = directory.mkdir();
+
+            if (directoryCreated) {
+                //System.out.println("Directory created successfully at: " + directoryPath);
+            } else {
+                //System.out.println("Failed to create directory. It may already exist at: " + directoryPath);
+            }
+
+            //File implementation reference from https://www.geeksforgeeks.org/java-program-to-create-a-file-in-a-specified-directory/
+
+            String fileName = "artemis.txt";
+            File file = new File("data/" + fileName);
+
+            try {
+                // File.createNewFile() Method Used
+                boolean isFileCreated = file.createNewFile();
+                if (isFileCreated) {
+                    //System.out.println("File created successfully.");
+                } else {
+                    //System.out.println("File already exists or an error occurred.");
+                }
+            } catch (IOException e) {
+                //e.printStackTrace();
+                System.out.println(e.getMessage());
+            }
+
+        } else {
+            //System.out.println("I'm Artemis");
+
+            //Else load list of task from file into taskList
+        }
 
         String userInput;
         while (true) {
@@ -19,8 +74,8 @@ public class Artemis {
                     break;
                 } else if (userInput.equals("list")) {
                     System.out.println("Here are the tasks in your list:\n");
-                    for (int i = 0; i < list.size(); i++) {
-                        Task task = list.get(i);
+                    for (int i = 0; i < taskList.size(); i++) {
+                        Task task = taskList.get(i);
                         System.out.println(i + 1 + "." + task.toString());
                     }
                 } else if (userInput.startsWith(Commands.mark.name())) {
@@ -35,10 +90,10 @@ public class Artemis {
                         throw new ArtemisException("Invalid index. Please try again!!! :(\n");
                     }
 
-                    if (index < 0 || index >= list.size()) {
+                    if (index < 0 || index >= taskList.size()) {
                         throw new ArtemisException("Invalid index. Please try again!!! :(\n");
                     } else {
-                        Task task = list.get(index);
+                        Task task = taskList.get(index);
                         task.markAsDone();
                         System.out.println("Nice! I've marked this task as done:\n" + task.toString());
                     }
@@ -54,10 +109,10 @@ public class Artemis {
                         throw new ArtemisException("Invalid index. Please try again!!! :(\n");
                     }
 
-                    if (index < 0 || index >= list.size()) {
+                    if (index < 0 || index >= taskList.size()) {
                         throw new ArtemisException("Invalid index. Please try again!!! :(\n");
                     } else {
-                        Task task = list.get(index);
+                        Task task = taskList.get(index);
                         task.markAsNotDone();
                         System.out.println("OK, I've marked this task as not done yet:\n" + task.toString());
                     }
@@ -69,7 +124,7 @@ public class Artemis {
                     String description = userInput.substring(5);
 
                     Todo todo = new Todo(description);
-                    list.add(todo);
+                    taskList.add(todo);
 
                     System.out.println("Got it. I've added this task:\n" + todo.toString());
                     System.out.println("Now you have " + Task.getTaskCount() + " tasks in the list.");
@@ -82,7 +137,7 @@ public class Artemis {
                     String by = userInput.substring(userInput.indexOf("/by") + 4);
 
                     Deadline deadline = new Deadline(description, by);
-                    list.add(deadline);
+                    taskList.add(deadline);
 
                     System.out.println("Got it. I've added this task:\n" + deadline.toString());
                     System.out.println("Now you have " + Task.getTaskCount() + " tasks in the list.");
@@ -96,7 +151,7 @@ public class Artemis {
                     String to = userInput.substring(userInput.indexOf("/to") + 4);
 
                     Event event = new Event(description, from, to);
-                    list.add(event);
+                    taskList.add(event);
 
                     System.out.println("Got it. I've added this task:\n" + event.toString());
                     System.out.println("Now you have " + Task.getTaskCount() + " tasks in the list.");
@@ -112,12 +167,12 @@ public class Artemis {
                         throw new ArtemisException("Invalid index. Please try again!!! :(\n");
                     }
 
-                    if (index < 0 || index >= list.size()) {
+                    if (index < 0 || index >= taskList.size()) {
                         throw new ArtemisException("Invalid index. Please try again!!! :(\n");
                     } else {
-                        list.remove(index);
+                        taskList.remove(index);
                         Task.reduceTaskCount();
-                        System.out.println("Noted. I've removed this task:\n" + list.get(index).toString());
+                        System.out.println("Noted. I've removed this task:\n" + taskList.get(index).toString());
                         System.out.println("Now you have " + Task.getTaskCount() + " tasks in the list.");
                     }
                 } else {
