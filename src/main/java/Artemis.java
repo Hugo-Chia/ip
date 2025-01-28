@@ -74,7 +74,7 @@ public class Artemis {
             try {
                 userInput = scanner.nextLine();
 
-                if (userInput.equals(Commands.bye.name())) {
+                if (userInput.equals(Commands.BYE.name().toLowerCase())) {
                     break;
                 } else if (userInput.equals("list")) {
                     System.out.println("Here are the tasks in your list:\n");
@@ -82,7 +82,7 @@ public class Artemis {
                         Task task = taskList.get(i);
                         System.out.println(i + 1 + "." + task.toString());
                     }
-                } else if (userInput.startsWith(Commands.mark.name())) {
+                } else if (userInput.startsWith(Commands.MARK.name().toLowerCase())) {
                     if (userInput.length() == 4) {
                         throw new ArtemisException("You did not choose a task to mark. Please try again!!! :(\n");
                     }
@@ -104,7 +104,7 @@ public class Artemis {
 
                         System.out.println("Nice! I've marked this task as done:\n" + task.toString());
                     }
-                } else if (userInput.startsWith(Commands.unmark.name())) {
+                } else if (userInput.startsWith(Commands.UNMARK.name().toLowerCase())) {
                     if (userInput.length() == 6) {
                         throw new ArtemisException("You did not choose a task to unmark. Please try again!!! :(\n");
                     }
@@ -126,7 +126,7 @@ public class Artemis {
 
                         System.out.println("OK, I've marked this task as not done yet:\n" + task.toString());
                     }
-                } else if (userInput.startsWith(Commands.todo.name())) {
+                } else if (userInput.startsWith(Commands.TODO.name().toLowerCase())) {
                     if (userInput.length() == 4) {
                         throw new ArtemisException("You did not fill up anything for todo. Please try again!!! :(\n");
                     }
@@ -140,7 +140,7 @@ public class Artemis {
 
                     System.out.println("Got it. I've added this task:\n" + todo.toString());
                     System.out.println("Now you have " + Task.getTaskCount() + " tasks in the list.");
-                } else if (userInput.startsWith(Commands.deadline.name())) {
+                } else if (userInput.startsWith(Commands.DEADLINE.name().toLowerCase())) {
                     if (userInput.length() == 8) {
                         throw new ArtemisException("You did not fill up anything for deadline. Please try again!!! :(\n");
                     }
@@ -155,7 +155,7 @@ public class Artemis {
 
                     System.out.println("Got it. I've added this task:\n" + deadline.toString());
                     System.out.println("Now you have " + Task.getTaskCount() + " tasks in the list.");
-                } else if (userInput.startsWith(Commands.event.name())) {
+                } else if (userInput.startsWith(Commands.EVENT.name().toLowerCase())) {
                     if (userInput.length() == 5) {
                         throw new ArtemisException("You did not fill up anything for event. Please try again!!! :(\n");
                     }
@@ -171,7 +171,7 @@ public class Artemis {
 
                     System.out.println("Got it. I've added this task:\n" + event.toString());
                     System.out.println("Now you have " + Task.getTaskCount() + " tasks in the list.");
-                } else if (userInput.startsWith(Commands.delete.name())) {
+                } else if (userInput.startsWith(Commands.DELETE.name().toLowerCase())) {
                     if (userInput.length() == 6) {
                         throw new ArtemisException("You did not choose a task to delete. Please try again!!! :(\n");
                     }
