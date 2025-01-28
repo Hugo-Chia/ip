@@ -12,8 +12,11 @@ public class Artemis {
         Scanner scanner = new Scanner(System.in);
         ArrayList<Task> taskList = new ArrayList<Task>();
 
+        String pathname = "data/artemis.txt";
+        Storage storage = new Storage(pathname);
+
         //Check if file exists
-        boolean dataExists = new File("data/artemis.txt").isFile();
+        boolean dataExists = new File(pathname).isFile();
 
         if (!dataExists) {
             //Data file does not exist, create folder and file
@@ -43,8 +46,8 @@ public class Artemis {
 
             //File implementation reference from https://www.geeksforgeeks.org/java-program-to-create-a-file-in-a-specified-directory/
 
-            String fileName = "artemis.txt";
-            File file = new File("data/" + fileName);
+            //String fileName = "artemis.txt";
+            File file = new File(pathname);
 
             try {
                 // File.createNewFile() Method Used
@@ -60,10 +63,11 @@ public class Artemis {
             }
 
         } else {
-            //System.out.println("I'm Artemis");
-
             //Else load list of task from file into taskList
+
+            taskList = storage.readData();
         }
+
 
         String userInput;
         while (true) {
@@ -95,6 +99,9 @@ public class Artemis {
                     } else {
                         Task task = taskList.get(index);
                         task.markAsDone();
+
+                        storage.writeData(taskList);
+
                         System.out.println("Nice! I've marked this task as done:\n" + task.toString());
                     }
                 } else if (userInput.startsWith(Commands.unmark.name())) {
@@ -114,6 +121,9 @@ public class Artemis {
                     } else {
                         Task task = taskList.get(index);
                         task.markAsNotDone();
+
+                        storage.writeData(taskList);
+
                         System.out.println("OK, I've marked this task as not done yet:\n" + task.toString());
                     }
                 } else if (userInput.startsWith(Commands.todo.name())) {
@@ -125,6 +135,8 @@ public class Artemis {
 
                     Todo todo = new Todo(description);
                     taskList.add(todo);
+
+                    storage.writeData(taskList);
 
                     System.out.println("Got it. I've added this task:\n" + todo.toString());
                     System.out.println("Now you have " + Task.getTaskCount() + " tasks in the list.");
@@ -139,6 +151,8 @@ public class Artemis {
                     Deadline deadline = new Deadline(description, by);
                     taskList.add(deadline);
 
+                    storage.writeData(taskList);
+
                     System.out.println("Got it. I've added this task:\n" + deadline.toString());
                     System.out.println("Now you have " + Task.getTaskCount() + " tasks in the list.");
                 } else if (userInput.startsWith(Commands.event.name())) {
@@ -152,6 +166,8 @@ public class Artemis {
 
                     Event event = new Event(description, from, to);
                     taskList.add(event);
+
+                    storage.writeData(taskList);
 
                     System.out.println("Got it. I've added this task:\n" + event.toString());
                     System.out.println("Now you have " + Task.getTaskCount() + " tasks in the list.");
@@ -172,6 +188,9 @@ public class Artemis {
                     } else {
                         taskList.remove(index);
                         Task.reduceTaskCount();
+
+                        storage.writeData(taskList);
+
                         System.out.println("Noted. I've removed this task:\n" + taskList.get(index).toString());
                         System.out.println("Now you have " + Task.getTaskCount() + " tasks in the list.");
                     }
