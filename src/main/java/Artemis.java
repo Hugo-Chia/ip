@@ -145,10 +145,21 @@ public class Artemis {
                         throw new ArtemisException("You did not fill up anything for deadline. Please try again!!! :(\n");
                     }
 
-                    String description = userInput.substring(9, userInput.indexOf("/by") - 1);
-                    String by = userInput.substring(userInput.indexOf("/by") + 4);
+                    String description;
+                    String by;
+                    String date;
+                    String time;
 
-                    Deadline deadline = new Deadline(description, by);
+                    try {
+                        description = userInput.substring(9, userInput.indexOf("/by") - 1);
+                        by = userInput.substring(userInput.indexOf("/by") + 4);
+                        date = by.split(" ")[0];
+                        time = by.split(" ")[1];
+                    } catch (IndexOutOfBoundsException e) {
+                        throw new ArtemisException("Invalid format for deadline.. Please try again!!! :(\n");
+                    }
+
+                    Deadline deadline = new Deadline(description, date, time);
                     taskList.add(deadline);
 
                     storage.writeData(taskList);

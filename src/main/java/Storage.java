@@ -28,7 +28,7 @@ public class Storage {
                     fileWriter.write("T;" + status + ";" + task.getDescription() + "\n");
                 } else if (task instanceof Deadline) {
                     fileWriter.write("D;" + status + ";" + task.getDescription() + ";"
-                            + ((Deadline) task).getBy() + "\n");
+                            + ((Deadline) task).getDate() + ";" + ((Deadline) task).getTime() + "\n");
                 } else if (task instanceof Event) {
                     fileWriter.write("E;" + status + ";" + task.getDescription() + ";"
                             + ((Event) task).getFrom() + ";" + ((Event) task).getTo() + "\n");
@@ -66,7 +66,7 @@ public class Storage {
 
                     taskList.add(todo);
                 } else if (taskArray[0].equals("D")) {
-                    Deadline deadline = new Deadline(taskArray[2], taskArray[3]);
+                    Deadline deadline = new Deadline(taskArray[2], taskArray[3], taskArray[4]);
 
                     if (taskArray[1].equals("0")) {
                         deadline.markAsNotDone();
@@ -90,6 +90,8 @@ public class Storage {
         } catch (IOException e) {
             System.out.println("An error occurred.");
             System.out.println(e.getMessage());
+        } catch (ArtemisException e) {
+            throw new RuntimeException(e);
         }
 
         return taskList;
