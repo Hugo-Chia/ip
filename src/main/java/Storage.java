@@ -31,7 +31,8 @@ public class Storage {
                             + ((Deadline) task).getDate() + ";" + ((Deadline) task).getTime() + "\n");
                 } else if (task instanceof Event) {
                     fileWriter.write("E;" + status + ";" + task.getDescription() + ";"
-                            + ((Event) task).getFrom() + ";" + ((Event) task).getTo() + "\n");
+                            + ((Event) task).getDate() + ";" + ((Event) task).getStartTime() + ";"
+                            + ((Event) task).getEndTime() + "\n");
                 }
             }
 
@@ -76,7 +77,7 @@ public class Storage {
 
                     taskList.add(deadline);
                 } else if (taskArray[0].equals("E")) {
-                    Event event = new Event(taskArray[2], taskArray[3], taskArray[4]);
+                    Event event = new Event(taskArray[2], taskArray[3], taskArray[4], taskArray[5]);
 
                     if (taskArray[1].equals("0")) {
                         event.markAsNotDone();

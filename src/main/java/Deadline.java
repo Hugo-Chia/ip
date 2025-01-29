@@ -18,7 +18,6 @@ public class Deadline extends Task {
         } catch (DateTimeParseException e) {
             throw new ArtemisException("Error with Date-Time Format, please try again! \n");
         }
-
     }
 
     @Override
