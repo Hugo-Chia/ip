@@ -10,7 +10,7 @@ public class Artemis {
         Scanner scanner = new Scanner(System.in);
         ArrayList<Task> taskList = new ArrayList<Task>();
 
-        String pathname = "data/artemis.txt";
+        String pathname = "artemis.txt";
         Storage storage = new Storage(pathname);
 
         //Read file to populate taskList
