@@ -4,19 +4,63 @@ import java.util.ArrayList;
 public class Storage {
     String filepath;
 
-    public Storage(String filepath) {
-        this.filepath = filepath;
+    public Storage(String filename) {
+        this.filepath = "data/" + filename;
+
+        //Check if file exists
+        boolean dataExists = new File(filepath).isFile();
+
+        //Data file does not exist, create folder and file
+        if (!dataExists) {
+            //Directory implementation reference from https://www.geeksforgeeks.org/how-to-create-a-directory-in-java/
+
+            // Specify the Directory Name
+            String directoryName = "data";
+
+            // Address of Current Directory
+            String currentDirectory = System.getProperty("user.dir");
+
+            // Specify the path of the directory to be created
+            String directoryPath = currentDirectory + File.separator + directoryName;
+
+            // Create a File object representing the directory
+            File directory = new File(directoryPath);
+
+            // Attempt to create the directory
+            boolean directoryCreated = directory.mkdir();
+
+//            if (directoryCreated) {
+//                System.out.println("Directory created successfully at: " + directoryPath);
+//            } else {
+//                System.out.println("Failed to create directory. It may already exist at: " + directoryPath);
+//            }
+
+            //File implementation reference from
+            //https://www.geeksforgeeks.org/java-program-to-create-a-file-in-a-specified-directory/
+
+            File file = new File(filepath);
+
+            try {
+                // File.createNewFile() Method Used
+                boolean isFileCreated = file.createNewFile();
+//                if (isFileCreated) {
+//                    System.out.println("File created successfully.");
+//                } else {
+//                    System.out.println("File already exists or an error occurred.");
+//                }
+            } catch (IOException e) {
+                //e.printStackTrace();
+                System.out.println(e.getMessage());
+            }
+
+        }
     }
 
     public void writeData(ArrayList<Task> taskList) {
         try {
             FileWriter fileWriter = new FileWriter(this.filepath);
 
-            for (int i = 0; i < taskList.size(); i++) {
-                Task task = taskList.get(i);
-                //System.out.println(i + 1 + "." + task.toString());
-                //fileWriter.write(task.toString()+"\n");
-
+            for (Task task : taskList) {
                 int status;
                 if (task.getStatusIcon().equals(" ")) {
                     status = 0;
@@ -54,7 +98,7 @@ public class Storage {
             while (bufferedReader.ready()) {
                 String task = bufferedReader.readLine();
 
-                String taskArray[] = task.split(";");
+                String[] taskArray = task.split(";");
 
                 if (taskArray[0].equals("T")) {
                     Todo todo = new Todo(taskArray[2]);

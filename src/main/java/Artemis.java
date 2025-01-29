@@ -1,5 +1,3 @@
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -15,59 +13,8 @@ public class Artemis {
         String pathname = "data/artemis.txt";
         Storage storage = new Storage(pathname);
 
-        //Check if file exists
-        boolean dataExists = new File(pathname).isFile();
-
-        if (!dataExists) {
-            //Data file does not exist, create folder and file
-
-            //Directory implementation reference from https://www.geeksforgeeks.org/how-to-create-a-directory-in-java/
-
-            // Specify the Directory Name
-            String directoryName = "data";
-
-            // Address of Current Directory
-            String currentDirectory = System.getProperty("user.dir");
-
-            // Specify the path of the directory to be created
-            String directoryPath = currentDirectory + File.separator + directoryName;
-
-            // Create a File object representing the directory
-            File directory = new File(directoryPath);
-
-            // Attempt to create the directory
-            boolean directoryCreated = directory.mkdir();
-
-            if (directoryCreated) {
-                //System.out.println("Directory created successfully at: " + directoryPath);
-            } else {
-                //System.out.println("Failed to create directory. It may already exist at: " + directoryPath);
-            }
-
-            //File implementation reference from https://www.geeksforgeeks.org/java-program-to-create-a-file-in-a-specified-directory/
-
-            //String fileName = "artemis.txt";
-            File file = new File(pathname);
-
-            try {
-                // File.createNewFile() Method Used
-                boolean isFileCreated = file.createNewFile();
-                if (isFileCreated) {
-                    //System.out.println("File created successfully.");
-                } else {
-                    //System.out.println("File already exists or an error occurred.");
-                }
-            } catch (IOException e) {
-                //e.printStackTrace();
-                System.out.println(e.getMessage());
-            }
-
-        } else {
-            //Else load list of task from file into taskList
-
-            taskList = storage.readData();
-        }
-
+        //Read file to populate taskList
+        taskList = storage.readData();
 
         String userInput;
         while (true) {
