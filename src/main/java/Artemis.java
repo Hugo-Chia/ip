@@ -145,10 +145,21 @@ public class Artemis {
                         throw new ArtemisException("You did not fill up anything for deadline. Please try again!!! :(\n");
                     }
 
-                    String description = userInput.substring(9, userInput.indexOf("/by") - 1);
-                    String by = userInput.substring(userInput.indexOf("/by") + 4);
+                    String description;
+                    String by;
+                    String date;
+                    String time;
 
-                    Deadline deadline = new Deadline(description, by);
+                    try {
+                        description = userInput.substring(9, userInput.indexOf("/by") - 1);
+                        by = userInput.substring(userInput.indexOf("/by") + 4);
+                        date = by.split(" ")[0];
+                        time = by.split(" ")[1];
+                    } catch (IndexOutOfBoundsException e) {
+                        throw new ArtemisException("Invalid format for deadline.. Please try again!!! :(\n");
+                    }
+
+                    Deadline deadline = new Deadline(description, date, time);
                     taskList.add(deadline);
 
                     storage.writeData(taskList);
@@ -160,11 +171,26 @@ public class Artemis {
                         throw new ArtemisException("You did not fill up anything for event. Please try again!!! :(\n");
                     }
 
-                    String description = userInput.substring(6, userInput.indexOf("/from") - 1);
-                    String from = userInput.substring(userInput.indexOf("/from") + 6, userInput.indexOf("/to") - 1);
-                    String to = userInput.substring(userInput.indexOf("/to") + 4);
+                    String description;
+                    String by;
+                    String date;
+                    String startTime;
+                    String endTime;
 
-                    Event event = new Event(description, from, to);
+                    try {
+                        description = userInput.substring(6, userInput.indexOf("/from") - 1);
+                        //String from = userInput.substring(userInput.indexOf("/from") + 6, userInput.indexOf("/to") - 1);
+                        //String to = userInput.substring(userInput.indexOf("/to") + 4);
+
+                        by = userInput.substring(userInput.indexOf("/from") + 6, userInput.indexOf("/to") - 1);
+                        date = by.split(" ")[0];
+                        startTime = by.split(" ")[1];
+                        endTime = userInput.substring(userInput.indexOf("/to") + 4);
+                    } catch (IndexOutOfBoundsException e) {
+                        throw new ArtemisException("Invalid format for event.. Please try again!!! :(\n");
+                    }
+
+                    Event event = new Event(description, date, startTime, endTime);
                     taskList.add(event);
 
                     storage.writeData(taskList);
