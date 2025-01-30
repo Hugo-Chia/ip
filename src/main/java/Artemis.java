@@ -20,20 +20,16 @@ public class Artemis {
 
                 String command = Parser.parseCommand(userInput);
 
-                if (userInput.equals(Commands.BYE.name().toLowerCase())) {
+                if (command.equals(Commands.BYE.name().toLowerCase())) {
                     break;
-                } else if (userInput.equals("list")) {
+                } else if (command.equals("list")) {
                     ui.listTask(taskList);
-                } else if (userInput.startsWith(Commands.MARK.name().toLowerCase())) {
-                    if (userInput.length() == 4) {
-                        throw new ArtemisException("You did not choose a task to mark. Please try again!!! :(\n");
-                    }
-
+                } else if (command.equals(Commands.MARK.name().toLowerCase())) {
                     int index;
                     try {
-                        index = Integer.parseInt(userInput.substring(5)) - 1;
-                    } catch (NumberFormatException e) {
-                        throw new ArtemisException("Invalid index. Please try again!!! :(\n");
+                        index = Parser.parseMarkUnmarkCommand(userInput);
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        throw new ArtemisException("You did not choose a valid task to mark. Please try again!!! :(\n");
                     }
 
                     if (index < 0 || index >= taskList.getSize()) {
@@ -46,16 +42,12 @@ public class Artemis {
 
                         System.out.println("Nice! I've marked this task as done:\n" + task.toString());
                     }
-                } else if (userInput.startsWith(Commands.UNMARK.name().toLowerCase())) {
-                    if (userInput.length() == 6) {
-                        throw new ArtemisException("You did not choose a task to unmark. Please try again!!! :(\n");
-                    }
-
+                } else if (command.equals(Commands.UNMARK.name().toLowerCase())) {
                     int index;
                     try {
-                        index = Integer.parseInt(userInput.substring(7)) - 1;
-                    } catch (NumberFormatException e) {
-                        throw new ArtemisException("Invalid index. Please try again!!! :(\n");
+                        index = Parser.parseMarkUnmarkCommand(userInput);
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        throw new ArtemisException("You did not choose a valid task to unmark. Please try again!!! :(\n");
                     }
 
                     if (index < 0 || index >= taskList.getSize()) {
