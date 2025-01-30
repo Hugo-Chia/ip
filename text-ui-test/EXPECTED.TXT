@@ -39,13 +39,13 @@ Here are the tasks in your list:
 2.[D][ ] return book (by: 01 Jan 2025 05:00 pm)
 3.[E][ ] project meeting (from: 02 Feb 2025 04:00 pm to: 06:00 pm)
 4.[T][ ] borrow book
-You did not choose a task to mark. Please try again!!! :(
+You did not choose a valid task to mark. Please try again!!! :(
 
 Invalid index. Please try again!!! :(
 
 Invalid index. Please try again!!! :(
 
-You did not choose a task to unmark. Please try again!!! :(
+You did not choose a valid task to unmark. Please try again!!! :(
 
 You did not fill up anything for todo. Please try again!!! :(
 
