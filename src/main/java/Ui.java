@@ -29,6 +29,11 @@ public class Ui {
         System.out.println("Now you have " + numOfTasks + " tasks in the list.");
     }
 
+    public void taskRemoved(Task task, int numOfTasks) {
+        System.out.println("Noted. I've removed this task:\n" + task.toString());
+        System.out.println("Now you have " + numOfTasks + " tasks in the list.");
+    }
+
     public String getUserInput() {
         return scanner.nextLine();
     }
