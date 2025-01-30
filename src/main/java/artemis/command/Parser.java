@@ -1,3 +1,10 @@
+package artemis.command;
+
+import artemis.task.Deadline;
+import artemis.task.Event;
+import artemis.task.Task;
+import artemis.task.Todo;
+
 public class Parser {
     public Parser() {
 

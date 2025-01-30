@@ -1,3 +1,5 @@
+package artemis.command;
+
 public enum Commands {
     BYE,
     LIST,
