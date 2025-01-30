@@ -49,9 +49,9 @@ You did not choose a valid task to unmark. Please try again!!! :(
 
 You did not fill up anything for todo. Please try again!!! :(
 
-You did not fill up anything for deadline. Please try again!!! :(
+Invalid format for deadline. Please try again!!! :(
 
-You did not fill up anything for event. Please try again!!! :(
+Invalid format for event. Please try again!!! :(
 
 Bye. Hope to see you again soon!
 
