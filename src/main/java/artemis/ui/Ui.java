@@ -1,3 +1,8 @@
+package artemis.ui;
+
+import artemis.task.Task;
+import artemis.task.TaskList;
+
 import java.util.Scanner;
 
 public class Ui {
