@@ -1,29 +1,29 @@
-import java.util.Scanner;
-
 public class Artemis {
-    public static void main(String[] args) {
-        System.out.println("Hello! I'm Artemis\n");
 
-        System.out.println("What can I do for you?\n");
+    private Storage storage;
+    private TaskList taskList;
+    private Ui ui;
 
-        Scanner scanner = new Scanner(System.in);
-        String pathname = "artemis.txt";
-        Storage storage = new Storage(pathname);
-        TaskList taskList = new TaskList(storage.readData());
+    public Artemis(String pathname) {
+        ui = new Ui();
+        storage = new Storage(pathname);
+        taskList = new TaskList(storage.readData());
+    }
+
+    public void run() {
+        ui.showWelcome();
 
         String userInput;
         while (true) {
             try {
-                userInput = scanner.nextLine();
+                userInput = ui.getUserInput();
+
+                String command = Parser.parseCommand(userInput);
 
                 if (userInput.equals(Commands.BYE.name().toLowerCase())) {
                     break;
                 } else if (userInput.equals("list")) {
-                    System.out.println("Here are the tasks in your list:\n");
-                    for (int i = 0; i < taskList.getSize(); i++) {
-                        Task task = taskList.getTask(i);
-                        System.out.println(i + 1 + "." + task.toString());
-                    }
+                    ui.listTask(taskList);
                 } else if (userInput.startsWith(Commands.MARK.name().toLowerCase())) {
                     if (userInput.length() == 4) {
                         throw new ArtemisException("You did not choose a task to mark. Please try again!!! :(\n");
@@ -31,7 +31,7 @@ public class Artemis {
 
                     int index;
                     try {
-                         index = Integer.parseInt(userInput.substring(5)) - 1;
+                        index = Integer.parseInt(userInput.substring(5)) - 1;
                     } catch (NumberFormatException e) {
                         throw new ArtemisException("Invalid index. Please try again!!! :(\n");
                     }
@@ -77,11 +77,8 @@ public class Artemis {
 
                     Todo todo = new Todo(description);
                     taskList.addTask(todo);
-
                     storage.writeData(taskList.getTaskList());
-
-                    System.out.println("Got it. I've added this task:\n" + todo.toString());
-                    System.out.println("Now you have " + taskList.getSize() + " tasks in the list.");
+                    ui.taskAdded(todo, taskList.getSize());
                 } else if (userInput.startsWith(Commands.DEADLINE.name().toLowerCase())) {
                     if (userInput.length() == 8) {
                         throw new ArtemisException("You did not fill up anything for deadline. Please try again!!! :(\n");
@@ -103,11 +100,8 @@ public class Artemis {
 
                     Deadline deadline = new Deadline(description, date, time);
                     taskList.addTask(deadline);
-
                     storage.writeData(taskList.getTaskList());
-
-                    System.out.println("Got it. I've added this task:\n" + deadline.toString());
-                    System.out.println("Now you have " + taskList.getSize() + " tasks in the list.");
+                    ui.taskAdded(deadline, taskList.getSize());
                 } else if (userInput.startsWith(Commands.EVENT.name().toLowerCase())) {
                     if (userInput.length() == 5) {
                         throw new ArtemisException("You did not fill up anything for event. Please try again!!! :(\n");
@@ -121,8 +115,6 @@ public class Artemis {
 
                     try {
                         description = userInput.substring(6, userInput.indexOf("/from") - 1);
-                        //String from = userInput.substring(userInput.indexOf("/from") + 6, userInput.indexOf("/to") - 1);
-                        //String to = userInput.substring(userInput.indexOf("/to") + 4);
 
                         by = userInput.substring(userInput.indexOf("/from") + 6, userInput.indexOf("/to") - 1);
                         date = by.split(" ")[0];
@@ -134,11 +126,8 @@ public class Artemis {
 
                     Event event = new Event(description, date, startTime, endTime);
                     taskList.addTask(event);
-
                     storage.writeData(taskList.getTaskList());
-
-                    System.out.println("Got it. I've added this task:\n" + event.toString());
-                    System.out.println("Now you have " + taskList.getSize() + " tasks in the list.");
+                    ui.taskAdded(event, taskList.getSize());
                 } else if (userInput.startsWith(Commands.DELETE.name().toLowerCase())) {
                     if (userInput.length() == 6) {
                         throw new ArtemisException("You did not choose a task to delete. Please try again!!! :(\n");
@@ -169,6 +158,10 @@ public class Artemis {
             }
         }
 
-        System.out.println("Bye. Hope to see you again soon!\n");
+        ui.showGoodbye();
+    }
+
+    public static void main(String[] args) {
+        new Artemis("artemis.txt").run();
     }
 }
