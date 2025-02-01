@@ -28,11 +28,12 @@ test {
 }
 
 application {
-    mainClass.set("seedu.duke.Duke")
+    mainClass.set("artemis.ui.Artemis")
 }
 
 shadowJar {
-    archiveBaseName = "duke"
+    archiveBaseName = "Artemis"
+    archiveFileName = 'Artemis.jar'
     archiveClassifier = null
 }
 
