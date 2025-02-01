@@ -6,18 +6,46 @@ import artemis.task.Task;
 import artemis.task.Todo;
 
 public class Parser {
+    /**
+     * Creates an instance of the Parser object.
+     */
     public Parser() {
 
     }
 
+    /**
+     * Retrieves the user's command.
+     *
+     * @param input User full input.
+     * @return User's command
+     */
     public static String parseCommand(String input) {
         return input.split(" ")[0];
     }
 
+    /**
+     * Parses the user input integer.
+     * Offset by -1 to correct it to zero-indexing.
+     * Used by commands: mark, unmark, delete.
+     *
+     * @param input User full input.
+     * @return Zero-indexed integer.
+     * @throws ArrayIndexOutOfBoundsException If 2nd element or input is missing.
+     */
     public static int parseIntegerCommand(String input) throws ArrayIndexOutOfBoundsException {
         return Integer.parseInt(input.split(" ")[1]) - 1;
     }
 
+    /**
+     * Returns a Task(Todo, Deadline, Event) after parsing user input.
+     *
+     * @param command The user's command.
+     * @param input The user's input.
+     * @return Parsed Task(Todo, Deadline, Event) object.
+     * @throws StringIndexOutOfBoundsException If user input is shorter than expected length.
+     * @throws ArrayIndexOutOfBoundsException If 2nd element or input is missing.
+     * @throws ArtemisException If Task creation fails due to wrong input.
+     */
     public static Task parseTask(Commands command, String input) throws StringIndexOutOfBoundsException, ArrayIndexOutOfBoundsException, ArtemisException {
         if (command.equals(Commands.TODO)) {
             return new Todo(input.substring(5));

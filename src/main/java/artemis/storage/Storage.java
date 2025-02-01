@@ -12,6 +12,11 @@ import java.util.ArrayList;
 public class Storage {
     String filepath;
 
+    /**
+     * Creates an instance of the Ui object.
+     *
+     * @param filename Filename of chatbot data to be stored.
+     */
     public Storage(String filename) {
         this.filepath = "data/" + filename;
 
@@ -64,6 +69,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Writes data to disk.
+     *
+     * @param taskList An arraylist of the user's task.
+     */
     public void writeData(ArrayList<Task> taskList) {
         try {
             FileWriter fileWriter = new FileWriter(this.filepath);
@@ -95,6 +105,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Reads data from disk.
+     *
+     * @return An ArrayList of Task retrieved from disk.
+     */
     public ArrayList<Task> readData() {
         ArrayList<Task> taskList = new ArrayList<>();
 
