@@ -18,12 +18,20 @@ public class Artemis {
     private TaskList taskList;
     private Ui ui;
 
-    public Artemis(String pathname) {
+    /**
+     * Creates a new instance of Artemis Chatbot.
+     *
+     * @param filename Filename of chatbot data to be stored.
+     */
+    public Artemis(String filename) {
         ui = new Ui();
-        storage = new Storage(pathname);
+        storage = new Storage(filename);
         taskList = new TaskList(storage.readData());
     }
 
+    /**
+     * Runs an instance of the Artemis Chatbot.
+     */
     public void run() {
         ui.showWelcome();
 
