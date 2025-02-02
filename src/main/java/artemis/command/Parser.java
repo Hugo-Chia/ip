@@ -46,7 +46,8 @@ public class Parser {
      * @throws ArrayIndexOutOfBoundsException If 2nd element or input is missing.
      * @throws ArtemisException If Task creation fails due to wrong input.
      */
-    public static Task parseTask(Commands command, String input) throws StringIndexOutOfBoundsException, ArrayIndexOutOfBoundsException, ArtemisException {
+    public static Task parseTask(Commands command, String input) throws StringIndexOutOfBoundsException,
+            ArrayIndexOutOfBoundsException, ArtemisException {
         if (command.equals(Commands.TODO)) {
             return new Todo(input.substring(5));
         } else if (command.equals(Commands.DEADLINE)) {
