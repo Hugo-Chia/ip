@@ -18,6 +18,17 @@ public class Parser {
         return Integer.parseInt(input.split(" ")[1]) - 1;
     }
 
+    /**
+     * Parses keyword, the second element in an array.
+     *
+     * @param input The user's input.
+     * @return The keyword the user entered.
+     * @throws ArrayIndexOutOfBoundsException If the second element does not exist.
+     */
+    public static String parseKeywordCommand(String input) throws ArrayIndexOutOfBoundsException {
+        return input.split(" ")[1];
+    }
+
     public static Task parseTask(Commands command, String input) throws StringIndexOutOfBoundsException, ArrayIndexOutOfBoundsException, ArtemisException {
         if (command.equals(Commands.TODO)) {
             return new Todo(input.substring(5));

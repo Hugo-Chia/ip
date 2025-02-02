@@ -29,6 +29,19 @@ public class Ui {
         }
     }
 
+    /**
+     * Prints matching tasks.
+     *
+     * @param taskList A filtered tasklist.
+     */
+    public void listMatchingTask(TaskList taskList) {
+        System.out.println("Here are the matching tasks in your list:\n");
+        for (int i = 0; i < taskList.getSize(); i++) {
+            Task task = taskList.getTask(i);
+            System.out.println(i + 1 + "." + task.toString());
+        }
+    }
+
     public void taskAdded(Task task, int numOfTasks) {
         System.out.println("Got it. I've added this task:\n" + task.toString());
         System.out.println("Now you have " + numOfTasks + " tasks in the list.");

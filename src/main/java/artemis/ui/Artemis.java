@@ -36,6 +36,15 @@ public class Artemis {
                     break;
                 } else if (command.equals("list")) {
                     ui.listTask(taskList);
+                } else if (command.equals("find")) {
+                    String keyword;
+                    try {
+                        keyword = Parser.parseKeywordCommand(userInput);
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        throw new ArtemisException("You did not choose a valid task to mark. Please try again!!! :(\n");
+                    }
+
+                    ui.listMatchingTask(taskList.getMatchingTask(keyword));
                 } else if (command.equals(Commands.MARK.name().toLowerCase())) {
                     int index;
                     try {
