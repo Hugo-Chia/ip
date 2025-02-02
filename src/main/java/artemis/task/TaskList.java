@@ -6,6 +6,11 @@ public class TaskList {
     protected ArrayList<Task> taskList = new ArrayList<Task>();
 
     /**
+     * Creates a new instance of TaskList.
+     */
+    public TaskList() {}
+
+    /**
      * Creates an instance of the TaskList object.
      */
     public TaskList(ArrayList<Task> taskList) {
@@ -47,6 +52,24 @@ public class TaskList {
      */
     public Task getTask(int index) {
         return taskList.get(index);
+    }
+
+    /**
+     * Retrieves list of matching task.
+     *
+     * @param keyword Keyword to search for in the task description
+     * @return TaskList containing matching Tasks
+     */
+    public TaskList getMatchingTask(String keyword) {
+        TaskList matchingTaskList = new TaskList();
+
+        for (Task task : taskList) {
+            if (task.getDescription().toLowerCase().contains(keyword.toLowerCase())) {
+                matchingTaskList.addTask(task);
+            }
+        }
+
+        return matchingTaskList;
     }
 
     /**

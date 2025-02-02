@@ -37,6 +37,17 @@ public class Parser {
     }
 
     /**
+     * Parses keyword, the second element in an array.
+     *
+     * @param input The user's input.
+     * @return The keyword the user entered.
+     * @throws ArrayIndexOutOfBoundsException If the second element does not exist.
+     */
+    public static String parseKeywordCommand(String input) throws ArrayIndexOutOfBoundsException {
+        return input.split(" ")[1];
+    }
+
+    /**
      * Returns a Task(Todo, Deadline, Event) after parsing user input.
      *
      * @param command The user's command.
