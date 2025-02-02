@@ -18,7 +18,8 @@ public class Parser {
         return Integer.parseInt(input.split(" ")[1]) - 1;
     }
 
-    public static Task parseTask(Commands command, String input) throws StringIndexOutOfBoundsException, ArrayIndexOutOfBoundsException, ArtemisException {
+    public static Task parseTask(Commands command, String input) throws StringIndexOutOfBoundsException,
+            ArrayIndexOutOfBoundsException, ArtemisException {
         if (command.equals(Commands.TODO)) {
             return new Todo(input.substring(5));
         } else if (command.equals(Commands.DEADLINE)) {
