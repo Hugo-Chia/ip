@@ -23,6 +23,26 @@ public class Parser {
         return input.split(" ")[0];
     }
 
+    public static Command parse(String input) throws ArtemisException {
+        String command = Parser.parseCommand(input);
+
+        if (command.equals(Commands.BYE.name().toLowerCase())) {
+            return new ExitCommand();
+        } else if (command.equals(Commands.LIST.name().toLowerCase())) {
+            return new ListCommand();
+        } else if (command.equals(Commands.MARK.name().toLowerCase())) {
+            int index;
+            try {
+                index = Parser.parseIntegerCommand(input);
+            } catch (ArrayIndexOutOfBoundsException e) {
+                throw new ArtemisException("You did not choose a valid task to mark. Please try again!!! :(\n");
+            }
+
+            return new MarkCommand(index);
+        }
+        return new UnknownCommand();
+    }
+
     /**
      * Parses the user input integer.
      * Offset by -1 to correct it to zero-indexing.
