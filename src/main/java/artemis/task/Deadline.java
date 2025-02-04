@@ -8,7 +8,6 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 public class Deadline extends Task {
-    //protected String by;
     protected LocalDate date;
     protected LocalTime time;
 
@@ -17,7 +16,6 @@ public class Deadline extends Task {
      */
     public Deadline(String description, String date, String time) throws ArtemisException {
         super(description);
-        //this.by = by;
 
         try {
             this.date = LocalDate.parse(date);
@@ -32,10 +30,6 @@ public class Deadline extends Task {
         return "[D]" + super.toString() + " (by: " + date.format(DateTimeFormatter.ofPattern("dd MMM yyyy"))
                 + " " + time.format(DateTimeFormatter.ofPattern("hh:mm a")) + ")";
     }
-
-//    public String getBy() {
-//        return by;
-//    }
 
     /**
      * Returns date of the deadline.

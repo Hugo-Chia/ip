@@ -8,9 +8,6 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 public class Event extends Task {
-//    protected String from;
-//    protected String to;
-
     protected LocalDate date;
     protected LocalTime startTime;
     protected LocalTime endTime;
@@ -20,8 +17,6 @@ public class Event extends Task {
      */
     public Event(String description, String date, String startTime, String endTime) throws ArtemisException {
         super(description);
-        //this.from = from;
-        //this.to = to;
 
         try {
             this.date = LocalDate.parse(date);
@@ -38,14 +33,6 @@ public class Event extends Task {
                 + " " + startTime.format(DateTimeFormatter.ofPattern("hh:mm a"))
                 + " to: " + endTime.format(DateTimeFormatter.ofPattern("hh:mm a")) + ")";
     }
-
-//    public String getFrom() {
-//        return from;
-//    }
-//
-//    public String getTo() {
-//        return to;
-//    }
 
     /**
      * Returns date of the event.
