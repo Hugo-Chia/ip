@@ -48,6 +48,54 @@ public class Parser {
             }
 
             return new UnmarkCommand(index);
+        }  else if (command.equals(Commands.DELETE.name().toLowerCase())) {
+            int index;
+            try {
+                index = Parser.parseIntegerCommand(input);
+            } catch (ArrayIndexOutOfBoundsException e) {
+                throw new ArtemisException("You did not choose a valid task to delete. Please try again!!! :(\n");
+            }
+
+            return new DeleteCommand(index);
+        } else if (command.equals(Commands.FIND.name().toLowerCase())) {
+            String keyword;
+            try {
+                keyword = Parser.parseKeywordCommand(input);
+            } catch (ArrayIndexOutOfBoundsException e) {
+                throw new ArtemisException("Invalid format for find. Please try again!!! :(\n");
+            }
+
+            return new FindCommand(keyword);
+        } else if (command.equals(Commands.TODO.name().toLowerCase())) {
+            Todo todo;
+
+            try {
+                todo = (Todo) Parser.parseTask(Commands.TODO, input);
+            }  catch (StringIndexOutOfBoundsException e) {
+                throw new ArtemisException("You did not fill up anything for todo. Please try again!!! :(\n");
+            }
+
+            return new ToDoCommand(todo);
+        } else if (command.equals(Commands.DEADLINE.name().toLowerCase())) {
+            Deadline deadline;
+
+            try {
+                deadline = (Deadline) Parser.parseTask(Commands.DEADLINE, input);
+            }  catch (StringIndexOutOfBoundsException e) {
+                throw new ArtemisException("You did not fill up anything for deadline. Please try again!!! :(\n");
+            }
+
+            return new DeadlineCommand(deadline);
+        } else if (command.equals(Commands.EVENT.name().toLowerCase())) {
+            Event event;
+
+            try {
+                event = (Event) Parser.parseTask(Commands.EVENT, input);
+            } catch (StringIndexOutOfBoundsException | ArrayIndexOutOfBoundsException | ArtemisException e) {
+                throw new ArtemisException("You did not fill up anything for event. Please try again!!! :(\n");
+            }
+
+            return new EventCommand(event);
         }
         return new UnknownCommand();
     }

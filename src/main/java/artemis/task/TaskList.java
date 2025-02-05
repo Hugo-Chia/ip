@@ -75,7 +75,7 @@ public class TaskList {
     /**
      * Retrieves the whole task list.
      *
-     * @return An a list of task - taskList.
+     * @return A list of task - taskList.
      */
     public ArrayList<Task> getTaskList() {
         return taskList;
