@@ -7,7 +7,6 @@ import artemis.command.Parser;
 import artemis.storage.Storage;
 import artemis.task.Deadline;
 import artemis.task.Event;
-import artemis.task.Task;
 import artemis.task.TaskList;
 import artemis.task.Todo;
 
@@ -57,26 +56,7 @@ public class Artemis {
                     ui.listMatchingTask(taskList.getMatchingTask(keyword));
                 }
 
-                if (command.equals(Commands.UNMARK.name().toLowerCase())) {
-                    int index;
-                    try {
-                        index = Parser.parseIntegerCommand(userInput);
-                    } catch (ArrayIndexOutOfBoundsException e) {
-                        throw new ArtemisException("You did not choose a valid task to unmark." +
-                                "Please try again!!! :(\n");
-                    }
-
-                    if (index < 0 || index >= taskList.getSize()) {
-                        throw new ArtemisException("Invalid index. Please try again!!! :(\n");
-                    } else {
-                        Task task = taskList.getTask(index);
-                        task.markAsNotDone();
-
-                        storage.writeData(taskList.getTaskList());
-
-                        System.out.println("OK, I've marked this task as not done yet:\n" + task.toString());
-                    }
-                } else if (command.equals(Commands.TODO.name().toLowerCase())) {
+                if (command.equals(Commands.TODO.name().toLowerCase())) {
                     Todo todo;
 
                     try {

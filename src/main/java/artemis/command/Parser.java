@@ -39,6 +39,15 @@ public class Parser {
             }
 
             return new MarkCommand(index);
+        } else if (command.equals(Commands.UNMARK.name().toLowerCase())) {
+            int index;
+            try {
+                index = Parser.parseIntegerCommand(input);
+            } catch (ArrayIndexOutOfBoundsException e) {
+                throw new ArtemisException("You did not choose a valid task to unmark. Please try again!!! :(\n");
+            }
+
+            return new UnmarkCommand(index);
         }
         return new UnknownCommand();
     }
