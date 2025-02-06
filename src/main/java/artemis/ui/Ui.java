@@ -26,8 +26,9 @@ public class Ui {
     /**
      * Prints the goodbye comment.
      */
-    public void showGoodbye() {
+    public String showGoodbye() {
         System.out.println("Bye. Hope to see you again soon!\n");
+        return "Bye. Hope to see you again soon!\n";
     }
 
     /**
@@ -35,12 +36,18 @@ public class Ui {
      *
      * @param taskList List of user's task - TaskList.
      */
-    public void listTask(TaskList taskList) {
+    public String listTask(TaskList taskList) {
+        String commandResponse;
+
         System.out.println("Here are the tasks in your list:\n");
+        commandResponse = "Here are the tasks in your list:\n";
         for (int i = 0; i < taskList.getSize(); i++) {
             Task task = taskList.getTask(i);
             System.out.println(i + 1 + "." + task.toString());
+            commandResponse = commandResponse + (i + 1) + "." + task.toString() + "\n";
         }
+
+        return commandResponse;
     }
 
     /**
@@ -48,12 +55,18 @@ public class Ui {
      *
      * @param taskList A filtered tasklist.
      */
-    public void listMatchingTask(TaskList taskList) {
+    public String listMatchingTask(TaskList taskList) {
+        String commandResponse;
+
         System.out.println("Here are the matching tasks in your list:\n");
+        commandResponse = "Here are the matching tasks in your list:\n";
         for (int i = 0; i < taskList.getSize(); i++) {
             Task task = taskList.getTask(i);
             System.out.println(i + 1 + "." + task.toString());
+            commandResponse = commandResponse + (i + 1) + "." + task.toString() + "\n";
         }
+
+        return commandResponse;
     }
 
     /**
@@ -62,9 +75,15 @@ public class Ui {
      * @param task User's Task.
      * @param numOfTasks Number of Tasks left.
      */
-    public void taskAdded(Task task, int numOfTasks) {
+    public String taskAdded(Task task, int numOfTasks) {
         System.out.println("Got it. I've added this task:\n" + task.toString());
         System.out.println("Now you have " + numOfTasks + " tasks in the list.");
+
+        String commandResponse;
+        commandResponse = "Got it. I've added this task:\n" + task.toString() + "\n";
+        commandResponse = commandResponse + "Now you have " + numOfTasks + " tasks in the list.";
+
+        return commandResponse;
     }
 
     /**
@@ -73,13 +92,20 @@ public class Ui {
      * @param task User's Task.
      * @param numOfTasks Number of Tasks left.
      */
-    public void taskRemoved(Task task, int numOfTasks) {
+    public String taskRemoved(Task task, int numOfTasks) {
         System.out.println("Noted. I've removed this task:\n" + task.toString());
         System.out.println("Now you have " + numOfTasks + " tasks in the list.");
+
+        String commandResponse;
+        commandResponse = "Noted. I've removed this task:\n" + task.toString() + "\n";
+        commandResponse = commandResponse + "Now you have " + numOfTasks + " tasks in the list.";
+
+        return commandResponse;
     }
 
-    public void showUnknownCommand() {
+    public String showUnknownCommand() {
         System.out.println("Sorry, I don't understand what you mean. Please try again!!! :(\\n");
+        return "Sorry, I don't understand what you mean. Please try again!!! :(\\n";
     }
 
     /**

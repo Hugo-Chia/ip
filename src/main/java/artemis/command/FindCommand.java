@@ -13,7 +13,7 @@ public class FindCommand extends Command {
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws ArtemisException {
-        ui.listMatchingTask(tasks.getMatchingTask(keyword));
+        commandResponse = ui.listMatchingTask(tasks.getMatchingTask(keyword));
     }
 
     @Override

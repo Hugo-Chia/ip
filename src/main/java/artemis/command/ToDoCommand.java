@@ -16,7 +16,7 @@ public class ToDoCommand extends Command {
     public void execute(TaskList tasks, Ui ui, Storage storage) throws ArtemisException {
         tasks.addTask(todo);
         storage.writeData(tasks.getTaskList());
-        ui.taskAdded(todo, tasks.getSize());
+        commandResponse = ui.taskAdded(todo, tasks.getSize());
     }
 
     @Override
