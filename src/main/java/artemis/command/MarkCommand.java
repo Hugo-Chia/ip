@@ -23,6 +23,7 @@ public class MarkCommand extends Command {
             storage.writeData(tasks.getTaskList());
 
             System.out.println("Nice! I've marked this task as done:\n" + task.toString());
+            commandResponse = "Nice! I've marked this task as done:\n" + task.toString();
         }
     }
 

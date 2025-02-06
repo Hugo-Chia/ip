@@ -16,7 +16,7 @@ public class DeadlineCommand extends Command {
     public void execute(TaskList tasks, Ui ui, Storage storage) throws ArtemisException {
         tasks.addTask(deadline);
         storage.writeData(tasks.getTaskList());
-        ui.taskAdded(deadline, tasks.getSize());
+        commandResponse = ui.taskAdded(deadline, tasks.getSize());
     }
 
     @Override

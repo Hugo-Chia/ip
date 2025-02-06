@@ -17,7 +17,7 @@ public class DeleteCommand extends Command {
         if (index < 0 || index >= tasks.getSize()) {
             throw new ArtemisException("Invalid index. Please try again!!! :(\n");
         } else {
-            ui.taskRemoved(tasks.getTask(index), tasks.getSize() - 1);
+            commandResponse = ui.taskRemoved(tasks.getTask(index), tasks.getSize() - 1);
             tasks.removeTask(index);
             storage.writeData(tasks.getTaskList());
         }

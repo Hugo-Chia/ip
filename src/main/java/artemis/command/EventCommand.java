@@ -16,7 +16,7 @@ public class EventCommand extends Command {
     public void execute(TaskList tasks, Ui ui, Storage storage) throws ArtemisException {
         tasks.addTask(event);
         storage.writeData(tasks.getTaskList());
-        ui.taskAdded(event, tasks.getSize());
+        commandResponse = ui.taskAdded(event, tasks.getSize());
     }
 
     @Override
