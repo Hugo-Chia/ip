@@ -78,6 +78,10 @@ public class Ui {
         System.out.println("Now you have " + numOfTasks + " tasks in the list.");
     }
 
+    public void showUnknownCommand() {
+        System.out.println("Sorry, I don't understand what you mean. Please try again!!! :(\\n");
+    }
+
     /**
      * Retrieves user input.
      *
