@@ -48,7 +48,7 @@ checkstyle {
 }
 
 application {
-    mainClass.set("Launcher")
+    mainClass.set("artemis.ui.Launcher")
 }
 
 shadowJar {
