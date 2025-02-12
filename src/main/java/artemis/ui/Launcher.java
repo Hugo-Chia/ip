@@ -1,3 +1,5 @@
+package artemis.ui;
+
 import javafx.application.Application;
 
 /**
