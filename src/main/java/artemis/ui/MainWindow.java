@@ -1,4 +1,5 @@
-import artemis.ui.Artemis;
+package artemis.ui;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;

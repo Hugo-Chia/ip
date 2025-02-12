@@ -104,8 +104,8 @@ public class Ui {
     }
 
     public String showUnknownCommand() {
-        System.out.println("Sorry, I don't understand what you mean. Please try again!!! :(\\n");
-        return "Sorry, I don't understand what you mean. Please try again!!! :(\\n";
+        System.out.println("Sorry, I don't understand what you mean. Please try again!!! :(");
+        return "Sorry, I don't understand what you mean. Please try again!!! :(";
     }
 
     /**
