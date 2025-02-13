@@ -49,7 +49,6 @@ public class Artemis {
      * Generates a response for the user's chat message.
      */
     public String getResponse(String userInput) {
-        //return "Artemis heard: " + input;
         try {
             Command command = Parser.parse(userInput);
             command.execute(taskList, ui, storage);

@@ -47,27 +47,14 @@ public class Storage {
             // Attempt to create the directory
             boolean directoryCreated = directory.mkdir();
 
-//            if (directoryCreated) {
-//                System.out.println("Directory created successfully at: " + directoryPath);
-//            } else {
-//                System.out.println("Failed to create directory. It may already exist at: " + directoryPath);
-//            }
-
             //File implementation reference from
             //https://www.geeksforgeeks.org/java-program-to-create-a-file-in-a-specified-directory/
 
             File file = new File(filepath);
 
             try {
-                // File.createNewFile() Method Used
                 boolean isFileCreated = file.createNewFile();
-//                if (isFileCreated) {
-//                    System.out.println("File created successfully.");
-//                } else {
-//                    System.out.println("File already exists or an error occurred.");
-//                }
             } catch (IOException e) {
-                //e.printStackTrace();
                 System.out.println(e.getMessage());
             }
 
