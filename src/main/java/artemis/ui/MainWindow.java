@@ -8,6 +8,8 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
+import static artemis.command.Response.welcomeMessage;
+
 /**
  * Controller for the main GUI.
  */
@@ -31,7 +33,7 @@ public class MainWindow extends AnchorPane {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
 
         dialogContainer.getChildren().addAll(
-                DialogBox.getArtemisDialog("Hello! I'm Artemis\nWhat can I do for you?", artemisImage)
+                DialogBox.getArtemisDialog(welcomeMessage, artemisImage)
         );
     }
 

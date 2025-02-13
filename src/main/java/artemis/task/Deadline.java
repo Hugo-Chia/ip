@@ -1,6 +1,6 @@
 package artemis.task;
 
-import artemis.command.ArtemisException;
+import artemis.command.ArtemisDateTimeException;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -14,14 +14,14 @@ public class Deadline extends Task {
     /**
      * Creates an instance of the Deadline object.
      */
-    public Deadline(String description, String date, String time) throws ArtemisException {
+    public Deadline(String description, String date, String time) throws ArtemisDateTimeException {
         super(description);
 
         try {
             this.date = LocalDate.parse(date);
             this.time = LocalTime.parse(time);
         } catch (DateTimeParseException e) {
-            throw new ArtemisException("Error with Date-Time Format, please try again! \n");
+            throw new ArtemisDateTimeException();
         }
     }
 

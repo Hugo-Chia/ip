@@ -1,6 +1,6 @@
 package artemis.task;
 
-import artemis.command.ArtemisException;
+import artemis.command.ArtemisDateTimeException;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -15,7 +15,7 @@ public class Event extends Task {
     /**
      * Creates an instance of the Event object.
      */
-    public Event(String description, String date, String startTime, String endTime) throws ArtemisException {
+    public Event(String description, String date, String startTime, String endTime) throws ArtemisDateTimeException {
         super(description);
 
         try {
@@ -23,7 +23,7 @@ public class Event extends Task {
             this.startTime = LocalTime.parse(startTime);
             this.endTime = LocalTime.parse(endTime);
         } catch (DateTimeParseException e) {
-            throw new ArtemisException("Error with Date-Time Format, please try again! \n");
+            throw new ArtemisDateTimeException();
         }
     }
 

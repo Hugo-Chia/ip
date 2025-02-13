@@ -19,11 +19,8 @@ public class MarkCommand extends Command {
         } else {
             Task task = tasks.getTask(index);
             task.markAsDone();
-
             storage.writeData(tasks.getTaskList());
-
-            System.out.println("Nice! I've marked this task as done:\n" + task.toString());
-            commandResponse = "Nice! I've marked this task as done:\n" + task.toString();
+            commandResponse = ui.markTask(task);
         }
     }
 
