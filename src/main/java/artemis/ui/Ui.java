@@ -93,12 +93,11 @@ public class Ui {
      * @param numOfTasks Number of Tasks left.
      */
     public String taskRemoved(Task task, int numOfTasks) {
-        System.out.println("Noted. I've removed this task:\n" + task.toString());
-        System.out.println("Now you have " + numOfTasks + " tasks in the list.");
-
         String commandResponse;
         commandResponse = "Noted. I've removed this task:\n" + task.toString() + "\n";
         commandResponse = commandResponse + "Now you have " + numOfTasks + " tasks in the list.";
+
+        System.out.println(commandResponse);
 
         return commandResponse;
     }
@@ -106,6 +105,18 @@ public class Ui {
     public String showUnknownCommand() {
         System.out.println("Sorry, I don't understand what you mean. Please try again!!! :(");
         return "Sorry, I don't understand what you mean. Please try again!!! :(";
+    }
+
+    public String markTask(Task task) {
+        String commandResponse = "Nice! I've marked this task as done:\n" + task.toString();
+        System.out.println(commandResponse);
+        return commandResponse;
+    }
+
+    public String unmarkTask(Task task) {
+        String commandResponse = "OK, I've marked this task as not done yet:\n" + task.toString();
+        System.out.println(commandResponse);
+        return commandResponse;
     }
 
     /**

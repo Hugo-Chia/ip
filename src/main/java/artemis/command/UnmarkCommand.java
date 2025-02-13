@@ -19,11 +19,8 @@ public class UnmarkCommand extends Command {
         } else {
             Task task = tasks.getTask(index);
             task.markAsNotDone();
-
             storage.writeData(tasks.getTaskList());
-
-            System.out.println("OK, I've marked this task as not done yet:\n" + task.toString());
-            commandResponse = "OK, I've marked this task as not done yet:\n" + task.toString();
+            commandResponse = ui.unmarkTask(task);
         }
     }
 
