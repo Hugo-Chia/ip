@@ -5,8 +5,13 @@ import artemis.task.TaskList;
 
 import java.util.Scanner;
 
+import static artemis.command.Response.goodByeMessage;
+import static artemis.command.Response.welcomeMessage;
+
 public class Ui {
     Scanner scanner;
+
+
 
     /**
      * Creates an instance of the Ui object.
@@ -19,16 +24,15 @@ public class Ui {
      * Prints the welcome comments.
      */
     public void showWelcome() {
-        System.out.println("Hello! I'm Artemis\n");
-        System.out.println("What can I do for you?\n");
+        System.out.println(welcomeMessage);
     }
 
     /**
      * Prints the goodbye comment.
      */
     public String showGoodbye() {
-        System.out.println("Bye. Hope to see you again soon!\n");
-        return "Bye. Hope to see you again soon!\n";
+        System.out.println(goodByeMessage);
+        return goodByeMessage;
     }
 
     /**
