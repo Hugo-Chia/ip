@@ -52,6 +52,8 @@ public class Artemis {
         try {
             Command command = Parser.parse(userInput);
             command.execute(taskList, ui, storage);
+            //assert false;
+            assert command.getCommandResponse() != null : "Command response is null";
             return command.getCommandResponse();
         } catch (ArtemisException e) {
             return(e.getMessage());
