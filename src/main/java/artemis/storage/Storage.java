@@ -1,5 +1,6 @@
 package artemis.storage;
 
+import artemis.command.ArtemisDateTimeException;
 import artemis.command.ArtemisException;
 import artemis.task.Deadline;
 import artemis.task.Event;
@@ -23,7 +24,8 @@ public class Storage {
      * @param filename Filename of chatbot data to be stored.
      */
     public Storage(String filename) {
-        this.filepath = "data/" + filename;
+        final String directoryName = "data";
+        this.filepath = directoryName + "/" + filename;
 
         //Check if file exists
         boolean dataExists = new File(filepath).isFile();
@@ -31,9 +33,6 @@ public class Storage {
         //Data file does not exist, create folder and file
         if (!dataExists) {
             //Directory implementation reference from https://www.geeksforgeeks.org/how-to-create-a-directory-in-java/
-
-            // Specify the Directory Name
-            String directoryName = "data";
 
             // Address of Current Directory
             String currentDirectory = System.getProperty("user.dir");
@@ -115,45 +114,65 @@ public class Storage {
 
                 String[] taskArray = task.split(";");
 
-                if (taskArray[0].equals("T")) {
-                    Todo todo = new Todo(taskArray[2]);
-
-                    if (taskArray[1].equals("0")) {
-                        todo.markAsNotDone();
-                    } else {
-                        todo.markAsDone();
-                    }
-
-                    taskList.add(todo);
-                } else if (taskArray[0].equals("D")) {
-                    Deadline deadline = new Deadline(taskArray[2], taskArray[3], taskArray[4]);
-
-                    if (taskArray[1].equals("0")) {
-                        deadline.markAsNotDone();
-                    } else {
-                        deadline.markAsDone();
-                    }
-
-                    taskList.add(deadline);
-                } else if (taskArray[0].equals("E")) {
-                    Event event = new Event(taskArray[2], taskArray[3], taskArray[4], taskArray[5]);
-
-                    if (taskArray[1].equals("0")) {
-                        event.markAsNotDone();
-                    } else {
-                        event.markAsDone();
-                    }
-
-                    taskList.add(event);
+                switch (taskArray[0]) {
+                    case "T" -> taskList.add(createTaskTodo(taskArray));
+                    case "D" -> taskList.add(createTaskDeadline(taskArray));
+                    case "E" -> taskList.add(createTaskEvent(taskArray));
                 }
             }
         } catch (IOException e) {
             System.out.println("An error occurred.");
             System.out.println(e.getMessage());
+        }
+
+        return taskList;
+    }
+
+    private Todo createTaskTodo(String[] taskArray) {
+        Todo todo = new Todo(taskArray[2]);
+
+        if (taskArray[1].equals("0")) {
+            todo.markAsNotDone();
+        } else {
+            todo.markAsDone();
+        }
+
+        return todo;
+    }
+
+    private Deadline createTaskDeadline(String[] taskArray) {
+        Deadline deadline;
+
+        try {
+            deadline = new Deadline(taskArray[2], taskArray[3], taskArray[4]);
         } catch (ArtemisException e) {
             throw new RuntimeException(e);
         }
 
-        return taskList;
+        if (taskArray[1].equals("0")) {
+            deadline.markAsNotDone();
+        } else {
+            deadline.markAsDone();
+        }
+
+        return deadline;
+    }
+
+    private Event createTaskEvent(String[] taskArray) {
+        Event event;
+
+        try {
+            event = new Event(taskArray[2], taskArray[3], taskArray[4], taskArray[5]);
+        } catch (ArtemisDateTimeException e) {
+            throw new RuntimeException(e);
+        }
+
+        if (taskArray[1].equals("0")) {
+            event.markAsNotDone();
+        } else {
+            event.markAsDone();
+        }
+
+        return event;
     }
 }

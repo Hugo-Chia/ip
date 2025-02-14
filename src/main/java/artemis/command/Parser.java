@@ -52,7 +52,7 @@ public class Parser {
             int index;
             try {
                 index = Parser.parseIntegerCommand(input);
-            } catch (ArrayIndexOutOfBoundsException e) {
+            } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
                 throw new ArtemisException("You did not choose a valid task to delete. Please try again!!! :(\n");
             }
 
