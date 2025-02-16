@@ -1,6 +1,7 @@
 package artemis.task;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class TaskList {
     protected ArrayList<Task> taskList = new ArrayList<Task>();
@@ -70,6 +71,23 @@ public class TaskList {
         }
 
         return matchingTaskList;
+    }
+
+    public TaskList getSortedTask(String keyword) {
+        if (keyword.equals("name")) {
+            taskList.sort(null);
+            return new TaskList(taskList);
+        } else if (keyword.equals("date")) {
+            taskList.sort(Comparator.comparing(
+                    task -> (task instanceof Deadline) ? ((Deadline) task).getDate() :
+                            (task instanceof Event) ? ((Event) task).getDate() : null,
+                    Comparator.nullsLast(Comparator.naturalOrder()))
+            );
+
+            return new TaskList(taskList);
+        } else {
+            return new TaskList(taskList);
+        }
     }
 
     /**

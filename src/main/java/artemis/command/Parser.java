@@ -96,6 +96,19 @@ public class Parser {
             }
 
             return new EventCommand(event);
+        } else if (command.equals(Commands.SORT.name().toLowerCase())) {
+            String keyword;
+            try {
+                keyword = Parser.parseKeywordCommand(input);
+            } catch (ArrayIndexOutOfBoundsException e) {
+                throw new ArtemisException("Invalid format for sort. Please try again!!! :(\n");
+            }
+
+            if (!keyword.equals("name") && !keyword.equals("date")) {
+                throw new ArtemisException("Invalid format for sort. Please try again!!! :(\n");
+            }
+
+            return new SortCommand(keyword);
         }
         return new UnknownCommand();
     }

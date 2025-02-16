@@ -1,6 +1,6 @@
 package artemis.task;
 
-public class Task {
+public class Task implements Comparable<Task>{
     protected String description;
     protected boolean isDone;
 
@@ -47,5 +47,10 @@ public class Task {
     @Override
     public String toString() {
         return "[" + this.getStatusIcon() + "] " + this.description;
+    }
+
+    @Override
+    public int compareTo(Task other) {
+        return this.description.compareTo(other.getDescription());
     }
 }
