@@ -121,6 +121,20 @@ public class Ui {
         return commandResponse;
     }
 
+    public String listSortedTask(TaskList taskList) {
+        String commandResponse;
+
+        commandResponse = "Here are the sorted tasks in your list:\n";
+        for (int i = 0; i < taskList.getSize(); i++) {
+            Task task = taskList.getTask(i);
+            commandResponse = commandResponse + (i + 1) + "." + task.toString() + "\n";
+        }
+
+        System.out.println(commandResponse);
+
+        return commandResponse;
+    }
+
     /**
      * Retrieves user input.
      *
