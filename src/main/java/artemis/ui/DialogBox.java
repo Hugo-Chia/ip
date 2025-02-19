@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.shape.Circle;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -36,6 +37,18 @@ public class DialogBox extends HBox {
 
         dialog.setText(text);
         displayPicture.setImage(img);
+
+        //Assisted with AI
+        applyCircularClip();
+    }
+
+    /**
+     * Applies a circular clip to the ImageView.
+     */
+    private void applyCircularClip() {
+        double radius = Math.min(displayPicture.getFitWidth(), displayPicture.getFitHeight()) / 2;
+        Circle clip = new Circle(radius, radius, radius);
+        displayPicture.setClip(clip);
     }
 
     /**
