@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 /**
- * A GUI for Duke using FXML.
+ * A GUI for Artemis using FXML.
  */
 public class Main extends Application {
 
@@ -22,6 +22,9 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
+            stage.setTitle("Artemis Chatbot");
+            stage.setMinWidth(400);
+            stage.setMinHeight(600);
             fxmlLoader.<MainWindow>getController().setArtemis(artemis);  // inject the Artemis instance
             stage.show();
         } catch (IOException e) {
