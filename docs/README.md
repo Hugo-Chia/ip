@@ -1,9 +1,14 @@
-# Artemis User Guide
+# ArtemisPro User Guide
 
-Sample GUI Screenshots
-// Product screenshot goes here
+## Introduction
+ArtemisPro is a task management bot that helps you remember tasks so we can get back to the moon again.
+It's, text-based, lightweight and very easy to learn and use.
 
-// Product intro goes here
+It allows you to manage tasks by listing, adding, marking, unmarking, deleting, finding and sorting tasks!
+It has "memory" so your data will persists even after closing the app!
+
+## Sample GUI Screenshots
+![Ui.png](Ui.png)
 
 ## Adding deadlines
 
