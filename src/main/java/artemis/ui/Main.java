@@ -22,7 +22,7 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
-            stage.setTitle("Artemis Chatbot");
+            stage.setTitle("ArtemisPro");
             stage.setMinWidth(400);
             stage.setMinHeight(600);
             fxmlLoader.<MainWindow>getController().setArtemis(artemis);  // inject the Artemis instance
